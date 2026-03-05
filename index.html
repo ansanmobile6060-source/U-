@@ -3,513 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>유플특판다이렉트 - 전국구 U+ 공식인증 법인대리점</title>
+    <title>안산 U+ 1위 공식인증점 - 수도권 15개 직영점</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
+        body { font-family: 'Noto Sans KR', sans-serif; }
         .uplus-magenta { color: #E6007E; }
         .bg-uplus-magenta { background-color: #E6007E; }
         .bg-uplus-gradient { background: linear-gradient(135deg, #E6007E 0%, #A6005E 100%); }
         .scroll-smooth { scroll-behavior: smooth; }
-        
-        /* 애니메이션 효과 */
-        .price-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .price-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(230, 0, 126, 0.15); border-color: #E6007E; }
-        .filter-btn.active { background-color: #111827; color: white; border-color: #111827; }
-        .tab-btn.active { border-bottom: 4px solid #E6007E; color: #E6007E; font-weight: 900; }
-        #slider { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 scroll-smooth">
 
-    <!-- 상단 네비게이션 -->
-    <header class="fixed w-full bg-white/95 backdrop-blur-md shadow-sm z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3.5 flex justify-between items-center">
+    <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <span class="text-xl md:text-2xl font-black uplus-magenta tracking-tighter cursor-pointer" onclick="window.location.reload()">유플특판다이렉트</span>
-                <span class="text-[10px] md:text-xs font-bold text-gray-400 border-l pl-2 border-gray-200 hidden sm:inline-block">U+ 공식인증 법인대리점</span>
+                <span class="text-xl font-black uplus-magenta tracking-tighter">LG U+</span>
+                <span class="text-sm font-bold text-gray-600 border-l pl-2 border-gray-300">공식인증 직영점</span>
             </div>
-            <div class="flex items-center gap-4">
-                <button onclick="scrollToPrice()" class="text-sm font-black bg-gray-900 text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition shadow-lg">
-                    실시간 가격표
-                </button>
-            </div>
+            <a href="#store-list" class="text-sm font-medium bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full hover:bg-gray-200 transition">
+                📍 매장 찾기
+            </a>
         </div>
     </header>
 
-    <!-- 메인 비주얼 슬라이더 -->
-    <section class="pt-16 w-full relative">
-        <div class="overflow-hidden relative h-[450px] md:h-[550px]">
-            <div id="slider" class="flex h-full w-full">
-                <!-- 슬라이드 1 -->
-                <div class="w-full h-full flex-shrink-0 bg-gray-900 text-white relative flex items-center overflow-hidden">
-                    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-uplus-magenta opacity-10 blur-[120px] rounded-full transform translate-x-1/4 -translate-y-1/4"></div>
-                    <div class="max-w-6xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
-                        <span class="inline-block bg-uplus-magenta text-white text-[10px] font-black px-3 py-1.5 rounded-full mb-5 tracking-widest uppercase">Special Offer</span>
-                        <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">온라인 최강 단가<br><span class="uplus-magenta">비밀 지원금</span> 선착순</h2>
-                        <p class="text-gray-400 mb-10 text-base md:text-xl max-w-xl font-medium leading-relaxed">복잡한 제휴카드 조건 없이!<br>순수 기기값 할인을 단가표에서 직접 확인하세요.</p>
-                        <button onclick="scrollToPrice()" class="bg-white text-gray-900 font-black px-10 py-4 rounded-full shadow-2xl hover:bg-gray-100 transition-all text-lg">내 최저가 확인하기</button>
+    <section class="pt-24 pb-12 px-4 bg-gray-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-pink-600 opacity-20 blur-3xl rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-purple-600 opacity-20 blur-3xl rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+            <span class="inline-block bg-uplus-magenta text-white text-xs font-bold px-3 py-1 rounded-full mb-4 animate-bounce">
+                안산·시흥·군포 1위 공식 인증점
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black mb-4 leading-tight">
+                안산 공단 근로자분들,<br>
+                퇴근길에 <span class="uplus-magenta">최저가</span> 확인하셨나요?
+            </h1>
+            <p class="text-gray-300 mb-2 text-lg">수도권 15개 직영점이 책임집니다.</p>
+            <p class="text-sm text-gray-400 mb-8">전 지점 교차 업무 처리 가능 / 어디서든 동일한 혜택</p>
+
+            <div class="relative w-full max-w-lg mx-auto mb-8 bg-gray-800 rounded-2xl overflow-hidden shadow-2xl border border-gray-700 aspect-video flex items-center justify-center group">
+                <div class="absolute inset-0 bg-gradient-to-tr from-gray-900 to-gray-800"></div>
+                <div class="relative z-10 text-center">
+                    <div class="flex justify-center gap-8 mb-4">
+                        <div class="text-center">
+                            <i data-lucide="smartphone" class="w-16 h-16 mx-auto text-gray-400 mb-2"></i>
+                            <span class="font-bold text-lg">iPhone 17 Pro</span>
+                        </div>
+                        <div class="text-center">
+                            <i data-lucide="smartphone" class="w-16 h-16 mx-auto text-gray-400 mb-2"></i>
+                            <span class="font-bold text-lg">Galaxy S25 Ultra</span>
+                        </div>
                     </div>
-                </div>
-                <!-- 슬라이드 2 -->
-                <div class="w-full h-full flex-shrink-0 bg-gradient-to-br from-indigo-900 to-black text-white relative flex items-center">
-                    <div class="max-w-6xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
-                        <span class="inline-block bg-blue-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full mb-5 tracking-widest">SAMSUNG SPECIAL</span>
-                        <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">갤럭시 S24 시리즈<br>기기변경 역대급 혜택</h2>
-                        <p class="text-blue-100 mb-10 text-base md:text-xl max-w-xl font-medium">유플러스 충성 고객님을 위한 단독 기변 할인!<br>지금 바로 전문 상담사와 매칭해 드립니다.</p>
-                        <button onclick="scrollToPrice()" class="bg-blue-600 hover:bg-blue-500 text-white font-black px-10 py-4 rounded-full shadow-2xl transition-all text-lg">기변 단가 확인</button>
-                    </div>
-                </div>
-                <!-- 슬라이드 3 -->
-                <div class="w-full h-full flex-shrink-0 bg-gradient-to-r from-rose-700 to-rose-950 text-white relative flex items-center">
-                    <div class="max-w-6xl mx-auto px-6 w-full relative z-10 text-center md:text-left">
-                        <span class="inline-block bg-yellow-400 text-gray-900 text-[10px] font-black px-3 py-1.5 rounded-full mb-5 tracking-widest">GIFT SET</span>
-                        <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">개통 고객 100%<br>프리미엄 3종 패키지</h2>
-                        <p class="text-rose-100 mb-10 text-base md:text-xl max-w-xl font-medium">고속 충전기 + 강화유리 + 투명 케이스<br>추가 비용 0원으로 완벽하게 준비해 드립니다.</p>
-                        <button onclick="scrollToPrice()" class="bg-white text-rose-800 font-black px-10 py-4 rounded-full shadow-2xl transition-all text-lg">혜택받고 신청하기</button>
-                    </div>
+                    <p class="text-sm text-gray-500">2월 프로모션 특가 진행 중</p>
                 </div>
             </div>
-            <!-- 컨트롤러 -->
-            <div class="absolute bottom-10 left-0 right-0 flex justify-center gap-3 z-20">
-                <button class="indicator w-12 h-1.5 rounded-full bg-white transition-all duration-300 opacity-100" onclick="goToSlide(0)"></button>
-                <button class="indicator w-12 h-1.5 rounded-full bg-white transition-all duration-300 opacity-40" onclick="goToSlide(1)"></button>
-                <button class="indicator w-12 h-1.5 rounded-full bg-white transition-all duration-300 opacity-40" onclick="goToSlide(2)"></button>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                <button onclick="scrollToConsult()" class="w-full bg-uplus-magenta hover:bg-pink-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-pink-500/30 transition transform hover:-translate-y-1">
+                    최저가 견적 받기
+                </button>
+                <button onclick="scrollToConsult()" class="w-full bg-white hover:bg-gray-100 text-gray-900 font-bold py-4 px-6 rounded-xl shadow transition border border-gray-200">
+                    간편 상담 신청하기
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- 특장점 섹션 -->
-    <section class="py-24 bg-white">
+    <section id="store-list" class="py-12 bg-white">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="text-uplus-magenta font-black text-sm tracking-widest uppercase mb-4 block">Process</span>
-                <h2 class="text-3xl md:text-4xl font-black mb-4 tracking-tighter text-gray-900">빠르고 투명한 폰 구매 경험</h2>
-                <p class="text-gray-500 text-lg">매장 방문 없이 안전하게 집에서 개통하세요.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-gray-50 rounded-3xl flex items-center justify-center mb-6 text-gray-900 font-black text-xl border border-gray-100 shadow-sm">1</div>
-                    <h4 class="font-bold text-lg mb-2">실시간 단가 확인</h4>
-                    <p class="text-gray-500 text-xs leading-relaxed">매일 업데이트되는<br>특판 가격을 확인합니다.</p>
-                </div>
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-gray-50 rounded-3xl flex items-center justify-center mb-6 text-gray-900 font-black text-xl border border-gray-100 shadow-sm">2</div>
-                    <h4 class="font-bold text-lg mb-2">전문 상담 배정</h4>
-                    <p class="text-gray-500 text-xs leading-relaxed">담당 상담사가 전화로<br>맞춤 견적을 안내합니다.</p>
-                </div>
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-gray-50 rounded-3xl flex items-center justify-center mb-6 text-gray-900 font-black text-xl border border-gray-100 shadow-sm">3</div>
-                    <h4 class="font-bold text-lg mb-2">안전 택배 발송</h4>
-                    <p class="text-gray-500 text-xs leading-relaxed">우체국 택배를 통해<br>가장 빠르게 기기를 보냅니다.</p>
-                </div>
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-uplus-magenta rounded-3xl flex items-center justify-center mb-6 text-white font-black text-xl shadow-lg shadow-pink-200">4</div>
-                    <h4 class="font-bold text-lg mb-2">비대면 개통</h4>
-                    <p class="text-gray-500 text-xs leading-relaxed">기기 수령 후 확인 시<br>쓰던 폰 그대로 즉시 개통!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 실시간 가격표 섹션 -->
-    <section id="price-section" class="py-24 bg-gray-50 border-t border-gray-100">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tighter">실시간 단말기 특가표</h2>
-                <p class="text-gray-600 text-lg">중간 유통 마진을 뺀 <span class="uplus-magenta font-black">법인 전용 단가</span>입니다.</p>
-            </div>
-
-            <!-- 가입유형 탭 -->
-            <div class="flex justify-center mb-12">
-                <div class="inline-flex bg-white p-2 rounded-2xl shadow-sm border border-gray-200">
-                    <button id="tab-통신사이동" onclick="setJoinType('통신사이동')" class="tab-btn active px-8 py-3.5 rounded-xl text-sm font-black transition-all">번호이동 (타사→U+)</button>
-                    <button id="tab-기기변경" onclick="setJoinType('기기변경')" class="tab-btn px-8 py-3.5 rounded-xl text-sm font-black text-gray-400 transition-all">기기변경 (U+ 유지)</button>
-                </div>
-            </div>
-
-            <!-- 브랜드 필터 -->
-            <div class="flex flex-wrap justify-center gap-2.5 mb-16">
-                <button onclick="filterBrand('all')" id="btn-all" class="filter-btn active px-7 py-2.5 rounded-full border border-gray-300 text-xs font-black shadow-sm transition-all uppercase">All</button>
-                <button onclick="filterBrand('삼성')" id="btn-삼성" class="filter-btn px-7 py-2.5 rounded-full border border-gray-300 text-gray-500 text-xs font-black shadow-sm transition-all uppercase">SAMSUNG</button>
-                <button onclick="filterBrand('애플')" id="btn-애플" class="filter-btn px-7 py-2.5 rounded-full border border-gray-300 text-gray-500 text-xs font-black shadow-sm transition-all uppercase">APPLE</button>
-            </div>
-
-            <!-- 로딩 상태 -->
-            <div id="loading-message" class="text-center py-24 flex flex-col items-center gap-5">
-                <div class="w-14 h-14 border-4 border-gray-200 border-t-pink-600 rounded-full animate-spin"></div>
-                <p class="font-bold text-gray-500 text-lg">구글 스프레드시트에서 데이터를 동기화 중...</p>
-            </div>
-
-            <!-- 기기 리스트 그리드 -->
-            <div id="phone-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
-                <!-- JS에서 카드가 주입됩니다 -->
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold mb-2">안산·시흥·군포 15개 직영 매장 안내</h2>
+                <p class="text-gray-600">가까운 매장 어디서나 동일한 혜택과 철저한 사후관리를 보장합니다.</p>
             </div>
             
-            <div class="mt-20 text-center">
-                <p class="text-gray-400 text-sm mb-6 font-medium">찾으시는 기종이 목록에 없으신가요?</p>
-                <button onclick="openCustomOrder()" class="bg-gray-900 text-white px-12 py-4.5 rounded-2xl font-black hover:bg-gray-800 transition shadow-2xl text-lg">기타 기종 별도 문의하기</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 푸터 -->
-    <footer class="bg-gray-900 text-gray-500 py-20 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-12 border-b border-gray-800 pb-16 mb-12">
-            <div class="max-w-sm">
-                <h2 class="text-2xl font-black text-white mb-6 tracking-tighter">유플특판다이렉트</h2>
-                <p class="text-sm leading-relaxed mb-6 font-medium">
-                    전국 어디서나 가장 투명한 가격과 최상의 혜택으로 고객님의 통신 생활을 설계해 드립니다. LG U+ 공식 인증 대리점에서 믿고 구매하세요.
-                </p>
-                <div class="flex gap-4">
-                    <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white"><i data-lucide="message-circle" class="w-5 h-5"></i></div>
-                    <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white"><i data-lucide="instagram" class="w-5 h-5"></i></div>
-                </div>
-            </div>
-            <div class="grid grid-cols-2 gap-12 text-sm">
-                <div>
-                    <h4 class="text-white font-black mb-6 uppercase tracking-widest text-xs">Customer</h4>
-                    <p class="text-2xl font-black text-white mb-3 tracking-tighter">1644-XXXX</p>
-                    <p class="font-medium">평일 10:00 - 18:30</p>
-                    <p class="font-medium">토/일/공휴일 휴무</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-black mb-6 uppercase tracking-widest text-xs">Menu</h4>
-                    <ul class="space-y-3 font-bold">
-                        <li><a href="#" class="hover:text-white transition">개인정보처리방침</a></li>
-                        <li><a href="#" class="hover:text-white transition">이용약관</a></li>
-                        <li><a href="#" class="hover:text-white transition">공식 블로그</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="max-w-6xl mx-auto text-[11px] font-medium leading-relaxed">
-            <p class="mb-1.5">(주)안산모바일 | 대표 : 김우식 | 사업자등록번호 : XXX-XX-XXXXX</p>
-            <p class="mb-1.5">통신판매업신고 : 제202X-경기안산-XXXX호</p>
-            <p class="mb-8">사업장 소재지 : 경기도 안산시 단원구 광덕대로 197 (고잔동)</p>
-            <p class="text-gray-600">Copyright © Uplus Direct Special Sales. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- 상담 신청 모달 -->
-    <div id="orderModal" class="fixed inset-0 z-[70] hidden flex items-end md:items-center justify-center bg-black/75 backdrop-blur-sm px-0 md:px-4 pb-0 transition-all duration-300">
-        <div class="bg-white rounded-t-[40px] md:rounded-[36px] w-full max-w-md p-8 pb-12 md:pb-8 relative animate-fade-in-up shadow-[0_-20px_50px_-15px_rgba(0,0,0,0.3)]">
-            <button onclick="closeOrderModal()" class="absolute top-8 right-8 text-gray-300 hover:text-gray-900 transition">
-                <i data-lucide="x" class="w-7 h-7"></i>
-            </button>
-            
-            <div class="mb-10">
-                <div id="modalJoinTypeBadge" class="bg-pink-100 text-pink-600 text-[10px] font-black px-2.5 py-1 rounded-md mb-4 inline-block uppercase tracking-widest">가입유형</div>
-                <h3 class="text-2xl font-black text-gray-900 leading-tight">
-                    <span id="modalModelName" class="uplus-magenta">갤럭시 S24 울트라</span><br>상담 신청을 남겨주세요
-                </h3>
-            </div>
-            
-            <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-6">
-                <input type="hidden" id="orderModelInput" value="">
-                <input type="hidden" id="orderJoinTypeInput" value="">
-
-                <div>
-                    <label class="block text-sm font-black text-gray-900 mb-4">현재 이용중인 통신사는?</label>
-                    <div class="grid grid-cols-4 gap-2.5">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="currentTelecom" value="SKT" class="peer sr-only" required>
-                            <div class="text-center py-3.5 border border-gray-100 bg-gray-50 rounded-2xl peer-checked:bg-gray-900 peer-checked:text-white peer-checked:border-gray-900 font-bold text-xs transition-all">SKT</div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="currentTelecom" value="KT" class="peer sr-only">
-                            <div class="text-center py-3.5 border border-gray-100 bg-gray-50 rounded-2xl peer-checked:bg-gray-900 peer-checked:text-white peer-checked:border-gray-900 font-bold text-xs transition-all">KT</div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="currentTelecom" value="LGU+" class="peer sr-only">
-                            <div class="text-center py-3.5 border border-gray-100 bg-gray-50 rounded-2xl peer-checked:bg-uplus-magenta peer-checked:text-white peer-checked:border-uplus-magenta font-bold text-xs transition-all">LGU+</div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="currentTelecom" value="알뜰폰" class="peer sr-only">
-                            <div class="text-center py-3.5 border border-gray-100 bg-gray-50 rounded-2xl peer-checked:bg-gray-900 peer-checked:text-white peer-checked:border-gray-900 font-bold text-xs transition-all">알뜰폰</div>
-                        </label>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 hover:border-pink-500 transition group hover:shadow-md">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="bg-white p-1.5 rounded-lg text-pink-600 shadow-sm group-hover:bg-pink-600 group-hover:text-white transition">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        </span>
+                        <h3 class="font-bold text-lg text-gray-900">중앙점</h3>
                     </div>
+                    <p class="text-sm text-gray-600 pl-9 break-keep">경기도 안산시 단원구 고잔1길 17 대유빌딩 1층</p>
                 </div>
+                </div>
+        </div>
+    </section>
 
+    <section id="consult-section" class="py-12 bg-gray-900 text-white">
+        <div class="max-w-md mx-auto px-4">
+            <div class="text-center mb-8">
+                <span class="bg-yellow-400 text-gray-900 text-xs font-bold px-2 py-1 rounded mb-2 inline-block">2월 한정 혜택</span>
+                <h2 class="text-2xl font-bold">잠깐! 상담만 받아도 혜택이 쏟아집니다</h2>
+                <p class="text-gray-400 mt-2 text-sm">상담 완료 시 <span class="text-yellow-400 font-bold">강화 필름 무료 교체권 100% 증정!</span></p>
+            </div>
+
+            <form id="consultForm" onsubmit="handleSubmit(event)" class="bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-700">
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-[11px] font-black text-gray-400 mb-2 ml-1 uppercase">Name</label>
-                        <input type="text" id="orderName" required placeholder="상담 받으실 분 성함" class="w-full px-6 py-4.5 rounded-2xl bg-gray-50 border border-gray-100 text-gray-900 focus:outline-none focus:border-uplus-magenta transition focus:bg-white font-bold placeholder:text-gray-300">
+                        <label class="block text-sm font-medium text-gray-400 mb-1">성함</label>
+                        <input type="text" name="userName" required placeholder="예: 홍길동" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-uplus-magenta transition">
                     </div>
                     <div>
-                        <label class="block text-[11px] font-black text-gray-400 mb-2 ml-1 uppercase">Phone Number</label>
-                        <input type="tel" id="orderPhone" required placeholder="휴대폰 번호 (하이픈 제외)" maxlength="11" class="w-full px-6 py-4.5 rounded-2xl bg-gray-50 border border-gray-100 text-gray-900 focus:outline-none focus:border-uplus-magenta transition focus:bg-white font-bold placeholder:text-gray-300">
+                        <label class="block text-sm font-medium text-gray-400 mb-1">연락처</label>
+                        <input type="tel" name="userPhone" required placeholder="010-0000-0000" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-uplus-magenta transition">
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">현재 통신사</label>
+                        <select name="currentCarrier" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-uplus-magenta transition">
+                            <option>SKT</option>
+                            <option>KT</option>
+                            <option>LG U+</option>
+                            <option>알뜰폰</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">상담 희망 시간</label>
+                        <select name="consultTime" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-uplus-magenta transition">
+                            <option>상관없음</option>
+                            <option>오전 (09:00 ~ 12:00)</option>
+                            <option>오후 (12:00 ~ 18:00)</option>
+                            <option>퇴근 후 (18:00 이후)</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="submitBtn" class="w-full bg-uplus-gradient hover:opacity-90 text-white font-bold py-4 rounded-xl shadow-lg mt-4 transition transform active:scale-95">
+                        무료 견적 및 혜택 확인하기
+                    </button>
+                    <p class="text-xs text-center text-gray-500 mt-2">
+                        개인정보는 상담 목적으로만 사용되며, 상담 종료 후 안전하게 파기됩니다.
+                    </p>
                 </div>
-
-                <div class="flex items-center gap-3 px-1 py-2">
-                    <input type="checkbox" id="agreePrivacy" required class="w-5 h-5 accent-pink-600 rounded-lg">
-                    <label for="agreePrivacy" class="text-[11px] text-gray-500 font-bold tracking-tighter">개인정보 수집 및 상담 활용(해피콜)에 동의합니다.</label>
-                </div>
-                
-                <button type="submit" id="submitBtn" class="w-full bg-uplus-gradient text-white font-black py-5 rounded-2xl shadow-2xl transition-all transform active:scale-[0.97] text-lg mt-4">
-                    무료 상담 신청 완료
-                </button>
             </form>
         </div>
-    </div>
+    </section>
 
-    <!-- 완료 감사 모달 -->
-    <div id="thankYouModal" class="fixed inset-0 z-[80] hidden flex items-center justify-center bg-black/80 backdrop-blur-md px-6">
-        <div class="bg-white rounded-[40px] w-full max-w-sm p-10 text-center relative animate-fade-in-up">
-            <div class="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
-                <i data-lucide="check" class="w-12 h-12"></i>
+    <div id="thankYouModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 px-4">
+        <div class="bg-white rounded-2xl w-full max-w-sm p-6 text-center relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="check" class="w-8 h-8"></i>
             </div>
-            <h3 class="text-2xl font-black mb-4 text-gray-900 tracking-tight">상담 접수 완료!</h3>
-            <p class="text-gray-500 mb-12 text-sm leading-relaxed font-medium">데이터가 안전하게 저장되었습니다.<br>전담 상담사가 <span class="text-uplus-magenta font-black">평일 기준 30분 내로</span><br>직접 전화를 드려 안내해 드리겠습니다.</p>
-            <button onclick="closeThankYouModal()" class="block w-full bg-gray-900 text-white font-black py-5 rounded-2xl shadow-xl transition hover:bg-gray-800 text-lg">
-                확인
+            <h3 class="text-xl font-bold mb-2 text-gray-900">신청이 완료되었습니다!</h3>
+            <p class="text-gray-600 mb-6 text-sm">담당자가 확인 후 빛의 속도로 연락드릴게요.</p>
+            <button onclick="closeModal()" class="block w-full mt-3 bg-gray-100 text-gray-700 hover:bg-gray-200 py-3 rounded-xl font-bold">
+                닫기
             </button>
         </div>
     </div>
 
     <script>
-        // ==========================================
-        // 설정 정보 (시트 ID 및 GAS URL)
-        // ==========================================
-        const SHEET_ID = '1vAspvqZSbNa2y_x8VhAvagfS9Ly8m-H0xU3Xt2MGAfs';
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqgZe-fjTfJVidIirg0eQ9eFOyY5M-ySba_qPdieVYJb-chAZbwy_GSYZ6prItzK_iDg/exec';
-
-        // ==========================================
-        // 1. 단가표 데이터 연동 (읽기)
-        // ==========================================
-        let phoneData = [];
-        let currentJoinType = '통신사이동';
-        let currentBrand = 'all';
-
-        async function fetchPriceTable() {
-            const loading = document.getElementById('loading-message');
-            const grid = document.getElementById('phone-grid');
-            
-            try {
-                // 구글 시트 Visualization API 사용
-                const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=단가표`;
-                const response = await fetch(url);
-                const text = await response.text();
-                
-                // 구글 응답 텍스트 파싱
-                const jsonData = JSON.parse(text.substring(47, text.length - 2));
-                const rows = jsonData.table.rows;
-                
-                // 컬럼 구조: A:브랜드, B:기종, C:용량, D:번호이동, E:기기변경, F:태그, G:요금제
-                phoneData = rows.map((row, index) => {
-                    const c = row.c;
-                    return {
-                        id: index,
-                        brand: c[0]?.v || '',
-                        model: c[1]?.v || '',
-                        storage: c[2]?.v || '',
-                        mnp_price: String(c[3]?.v || '0'),
-                        change_price: String(c[4]?.v || '0'),
-                        tag: c[5]?.v || '',
-                        plan: c[6]?.v || '전용 고액 요금제 기준'
-                    };
-                }).filter(p => p.model !== ''); 
-
-                renderPhones();
-            } catch (error) {
-                console.error("단가표 로드 실패:", error);
-                loading.innerHTML = `<p class='text-red-500 font-bold'>서버 연결에 실패했습니다.<br>잠시 후 새로고침 해주세요.</p>`;
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.lucide) {
+                lucide.createIcons();
             }
-        }
+        });
 
-        function renderPhones() {
-            const grid = document.getElementById('phone-grid');
-            const loading = document.getElementById('loading-message');
-            
-            const filtered = phoneData.filter(p => currentBrand === 'all' || p.brand.includes(currentBrand));
-            
-            if (filtered.length === 0) {
-                grid.innerHTML = `<div class='col-span-full py-20 text-center font-bold text-gray-300'>현재 등록된 단말기 데이터가 없습니다.</div>`;
-            } else {
-                grid.innerHTML = filtered.map(p => {
-                    const rawPrice = currentJoinType === '통신사이동' ? p.mnp_price : p.change_price;
-                    const numPrice = parseInt(rawPrice.replace(/,/g, ''));
-                    
-                    let priceText = "";
-                    let priceClass = "uplus-magenta";
-                    
-                    if (numPrice < 0) {
-                        priceText = `${Math.abs(numPrice).toLocaleString()}원 페이백`;
-                        priceClass = "text-blue-600";
-                    } else if (numPrice === 0) {
-                        priceText = "할부원금 0원";
-                        priceClass = "text-blue-600";
-                    } else {
-                        priceText = `${numPrice.toLocaleString()}원`;
-                    }
-
-                    return `
-                        <div class="price-card bg-white rounded-[32px] overflow-hidden border border-gray-100 shadow-sm flex flex-col h-full animate-fade-in-up">
-                            <div class="p-9 pb-5">
-                                <div class="flex justify-between items-start mb-5">
-                                    <span class="text-[10px] font-black text-gray-300 tracking-[0.2em] uppercase">${p.brand}</span>
-                                    ${p.tag ? `<span class="bg-gray-900 text-white text-[9px] font-black px-2 py-1 rounded-md tracking-tighter">${p.tag}</span>` : ''}
-                                </div>
-                                <h4 class="text-2xl font-black text-gray-900 mb-1 tracking-tight">${p.model}</h4>
-                                <p class="text-gray-400 text-sm font-bold mb-6">${p.storage}</p>
-                                
-                                <div class="bg-gray-50 rounded-2xl p-5 mb-8">
-                                    <div class="flex justify-between items-center mb-1.5">
-                                        <span class="text-[11px] text-gray-400 font-black">${currentJoinType} 기준</span>
-                                        <span class="text-[9px] bg-white border border-gray-100 text-gray-300 px-2 py-0.5 rounded-full font-bold">Secret Price</span>
-                                    </div>
-                                    <div class="text-2xl font-black ${priceClass}">${priceText}</div>
-                                </div>
-                                
-                                <div class="flex items-center gap-2 text-[11px] text-gray-400 font-bold mb-2">
-                                    <i data-lucide="info" class="w-4 h-4 text-gray-200"></i>
-                                    유지조건: ${p.plan}
-                                </div>
-                            </div>
-                            <div class="px-9 pb-9 mt-auto">
-                                <button onclick="openOrderModal('${p.model}', '${currentJoinType}')" class="w-full bg-gray-900 text-white py-4.5 rounded-2xl font-black hover:bg-uplus-magenta transition-all flex items-center justify-center gap-2 shadow-sm text-sm">
-                                    특가 상담 신청
-                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            loading.classList.add('hidden');
-            grid.classList.remove('hidden');
-            lucide.createIcons();
+        function scrollToConsult() {
+            document.getElementById('consult-section').scrollIntoView({ behavior: 'smooth' });
         }
 
         // ==========================================
-        // 2. 상담 접수 시스템 (쓰기)
+        // ★ 구글 스프레드시트 연동 스크립트 시작 ★
         // ==========================================
-        async function handleOrderSubmit(e) {
-            e.preventDefault();
+        
+        // 1. 배포 후 복사한 웹 앱 URL을 아래 따옴표 안에 붙여넣으세요.
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz4haLqiekuBHxohYDfjfhwNgybj7cS6ZPG0Ig5N9Z29nB2rrcjzfM_TNHpahNQXLjeDA/exec'; 
+
+        function handleSubmit(event) {
+            event.preventDefault(); // 폼 기본 제출 새로고침 방지
+            
+            const form = document.getElementById('consultForm');
             const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerText;
+            const originalBtnText = submitBtn.innerText;
             
+            // 전송 중복 방지: 버튼 비활성화 및 텍스트 변경
             submitBtn.disabled = true;
             submitBtn.innerText = "데이터 전송 중...";
 
-            const payload = {
-                model: document.getElementById('orderModelInput').value,
-                joinType: document.getElementById('orderJoinTypeInput').value,
-                telecom: document.querySelector('input[name="currentTelecom"]:checked').value,
-                name: document.getElementById('orderName').value,
-                phone: document.getElementById('orderPhone').value,
-                timestamp: new Date().toLocaleString('ko-KR')
-            };
-
-            try {
-                // GAS 웹앱에 데이터 전송
-                await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    cache: 'no-cache',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+            // 구글 시트로 데이터 쏘기
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    // 성공 시 모달 창 띄우고 폼 내용 비우기
+                    document.getElementById('thankYouModal').classList.remove('hidden');
+                    form.reset(); 
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("통신 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+                })
+                .finally(() => {
+                    // 통신이 끝나면 버튼 상태 원상복구
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalBtnText;
                 });
-
-                // 성공 모달 노출
-                closeOrderModal();
-                document.getElementById('thankYouModal').classList.remove('hidden');
-                document.getElementById('orderForm').reset();
-            } catch (error) {
-                console.error("접수 실패:", error);
-                alert("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerText = originalText;
-            }
         }
 
-        // ==========================================
-        // 3. UI 및 유틸리티 로직
-        // ==========================================
-        function setJoinType(type) {
-            currentJoinType = type;
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active', 'text-gray-900');
-                btn.classList.add('text-gray-400');
-            });
-            const activeTab = document.getElementById(`tab-${type}`);
-            activeTab.classList.add('active', 'text-gray-900');
-            renderPhones();
-        }
-
-        function filterBrand(brand) {
-            currentBrand = brand;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-${brand}`).classList.add('active');
-            renderPhones();
-        }
-
-        let currentSlide = 0;
-        function goToSlide(idx) {
-            currentSlide = idx;
-            const slider = document.getElementById('slider');
-            const indicators = document.querySelectorAll('.indicator');
-            slider.style.transform = `translateX(-${idx * 100}%)`;
-            indicators.forEach((ind, i) => {
-                ind.style.width = i === idx ? '60px' : '12px';
-                ind.style.opacity = i === idx ? '1' : '0.4';
-            });
-        }
-
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % 3;
-            goToSlide(currentSlide);
-        }, 6000);
-
-        function scrollToPrice() {
-            document.getElementById('price-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function openOrderModal(model, joinType) {
-            document.getElementById('modalModelName').innerText = model;
-            document.getElementById('modalJoinTypeBadge').innerText = joinType;
-            document.getElementById('orderModelInput').value = model;
-            document.getElementById('orderJoinTypeInput').value = joinType;
-            document.getElementById('orderModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            lucide.createIcons();
-        }
-
-        function closeOrderModal() {
-            document.getElementById('orderModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeThankYouModal() {
+        function closeModal() {
             document.getElementById('thankYouModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
         }
 
-        function openCustomOrder() {
-            openOrderModal('기타 기종 개별 문의', '맞춤 상담');
-        }
-
-        // 숫자만 입력 가능하게 제어
-        document.getElementById('orderPhone').addEventListener('input', function(e) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+        document.getElementById('thankYouModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
         });
-
-        // 초기 실행
-        window.onload = function() {
-            fetchPriceTable();
-            lucide.createIcons();
-        };
     </script>
 </body>
 </html>
