@@ -14,19 +14,25 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* SPA 화면 전환 애니메이션 */
+        /* 모요 스타일 칩 버튼 활성화 */
+        .filter-btn.active { background-color: #111827; color: white; border-color: #111827; }
+
+        /* 메인 슬라이드 배너 애니메이션 */
+        .banner-track { transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+        /* SPA 화면 전환 (스크롤 문제 해결된 Flex 구조) */
         .spa-page {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #fff; z-index: 100;
             transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-            overflow-y: auto;
+            display: flex; flex-direction: column;
         }
         .spa-page.active { transform: translateX(0); }
     </style>
 </head>
 <body class="text-gray-900">
 
-    <div id="main-page" class="w-full min-h-screen pb-20">
+    <div id="main-page" class="w-full min-h-screen pb-10">
         <header class="bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 sticky top-0 z-40">
             <div class="max-w-4xl mx-auto px-5 py-4 flex justify-between items-center">
                 <div class="flex items-center gap-2">
@@ -36,112 +42,193 @@
             </div>
         </header>
 
-        <section class="max-w-4xl mx-auto px-5 pt-8 pb-4">
-            <h2 class="text-[26px] font-black tracking-tight leading-tight mb-2">🔥 이번 달 단말기 특가<br>한눈에 비교하세요</h2>
-            <p class="text-gray-500 text-[14px] mb-8">모든 기기는 100% 미개봉 새제품입니다.</p>
+        <section class="w-full bg-white border-b border-gray-100 overflow-hidden relative">
+            <div class="max-w-4xl mx-auto relative">
+                <div id="main-banner-track" class="flex banner-track w-full">
+                    <div class="w-full shrink-0 px-5 py-10 bg-gradient-to-r from-gray-900 to-gray-800 text-white flex flex-col justify-center min-h-[220px]">
+                        <span class="inline-block bg-uplus-magenta text-white text-[11px] font-bold px-2.5 py-1 rounded-md mb-3 w-max">누적 가입자 5만 건 돌파</span>
+                        <h2 class="text-[24px] sm:text-[28px] font-black leading-tight mb-2 tracking-tight">전국 어디서나<br>가장 투명한 특판 가격</h2>
+                        <p class="text-gray-300 text-[14px]">수도권 15개 직영점의 압도적 혜택을 집에서 받아보세요.</p>
+                    </div>
+
+                    <div class="w-full shrink-0 px-5 py-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex flex-col justify-center min-h-[220px]">
+                        <span class="inline-block bg-white text-blue-600 text-[11px] font-bold px-2.5 py-1 rounded-md mb-3 w-max">기간 한정 특별 지원</span>
+                        <h2 class="text-[24px] sm:text-[28px] font-black leading-tight mb-2 tracking-tight">최신 갤럭시 / 아이폰<br>역대급 기기값 할인</h2>
+                        <p class="text-blue-100 text-[14px]">숨겨진 조건 없이 순수 할부원금을 직접 비교해 보세요.</p>
+                    </div>
+
+                    <div class="w-full shrink-0 px-5 py-10 bg-gradient-to-r from-rose-500 to-pink-600 text-white flex flex-col justify-center min-h-[220px]">
+                        <span class="inline-block bg-yellow-300 text-gray-900 text-[11px] font-bold px-2.5 py-1 rounded-md mb-3 w-max">100% 무료 증정</span>
+                        <h2 class="text-[24px] sm:text-[28px] font-black leading-tight mb-2 tracking-tight">개통 고객 전원<br>프리미엄 3종 세트</h2>
+                        <p class="text-rose-100 text-[14px]">고속 충전기 + 클리어 케이스 + 강화유리 필름 증정</p>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-1.5 z-10">
+                    <button class="banner-dot w-2 h-2 rounded-full bg-white transition-all w-6 opacity-100"></button>
+                    <button class="banner-dot w-2 h-2 rounded-full bg-white transition-all opacity-40"></button>
+                    <button class="banner-dot w-2 h-2 rounded-full bg-white transition-all opacity-40"></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-5 pt-8 pb-10">
+            <h2 class="text-[22px] font-black tracking-tight leading-tight mb-6 flex items-center gap-2">
+                <i data-lucide="smartphone" class="w-6 h-6 text-uplus-magenta"></i> 이달의 특가 라인업
+            </h2>
+            
+            <div class="flex mb-6">
+                <div class="bg-gray-200/60 p-1 rounded-[16px] inline-flex w-full sm:w-auto shadow-inner">
+                    <button id="tab-통신사이동" onclick="setJoinType('통신사이동')" class="w-1/2 sm:w-40 py-2.5 rounded-[12px] text-[14px] font-bold transition-all shadow-sm bg-white text-gray-900">통신사 이동</button>
+                    <button id="tab-기기변경" onclick="setJoinType('기기변경')" class="w-1/2 sm:w-40 py-2.5 rounded-[12px] text-[14px] font-bold text-gray-500 hover:text-gray-800 transition-all">기기변경</button>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+                <button onclick="filterBrand('all')" id="btn-all" class="filter-btn active px-5 py-2 rounded-full border border-gray-200 text-[13px] font-bold transition shadow-sm">전체보기</button>
+                <button onclick="filterBrand('삼성')" id="btn-삼성" class="filter-btn px-5 py-2 rounded-full border border-gray-200 text-gray-500 bg-white text-[13px] font-bold transition shadow-sm">삼성 갤럭시</button>
+                <button onclick="filterBrand('애플')" id="btn-애플" class="filter-btn px-5 py-2 rounded-full border border-gray-200 text-gray-500 bg-white text-[13px] font-bold transition shadow-sm">애플 아이폰</button>
+            </div>
 
             <div id="loading-message" class="text-center py-20 text-gray-400">
-                <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto mb-3"></i>
-                <p>단가표를 불러오는 중입니다...</p>
+                <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto mb-3 text-gray-300"></i>
+                <p class="font-medium text-[14px]">실시간 단가표를 불러오는 중입니다...</p>
             </div>
 
             <div id="group-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 hidden"></div>
         </section>
+
+        <section class="bg-white border-t border-gray-200 py-10 mt-4">
+            <div class="max-w-4xl mx-auto px-5 flex flex-col sm:flex-row justify-between items-center gap-8">
+                <div class="text-center sm:text-left">
+                    <h3 class="text-[18px] font-black text-gray-900 mb-4 flex items-center justify-center sm:justify-start gap-2">
+                        <i data-lucide="clock" class="w-5 h-5 text-gray-500"></i> 고객센터 운영시간
+                    </h3>
+                    <div class="text-[14px] text-gray-600 space-y-1.5">
+                        <p><span class="font-bold text-gray-800 w-12 inline-block">월 - 토</span> 10:00 ~ 20:00</p>
+                        <p><span class="font-bold text-gray-800 w-12 inline-block">일요일</span> 11:00 ~ 20:00</p>
+                        <p class="text-gray-400 text-[13px] pt-1 mt-1">※ 점심시간 : 12:00 ~ 13:30</p>
+                    </div>
+                </div>
+                <div class="w-full sm:w-auto text-center">
+                    <p class="text-[13px] text-gray-500 mb-3 font-medium">궁금한 점이 있으시다면 언제든 문의주세요!</p>
+                    <a href="http://pf.kakao.com/_iVyhX" target="_blank" class="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-[#FEE500] text-[#3c1e1e] font-bold py-3.5 px-8 rounded-[14px] shadow-sm hover:bg-[#FDD835] transition">
+                        <i data-lucide="message-circle" class="w-5 h-5 fill-current"></i>
+                        카카오톡 채널 상담
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-gray-50 text-gray-500 py-10 border-t border-gray-200">
+            <div class="max-w-4xl mx-auto px-5 text-center text-[12px] space-y-2">
+                <p class="font-bold mb-4 text-[13px] text-gray-700">LG U+ 공식인증 법인대리점 | 유플특판다이렉트</p>
+                <p>(주)안산모바일 | 대표 : 김우식</p>
+                <p>사업장 소재지 : 경기도 안산시 단원구 광덕대로 197</p>
+                <p class="pt-4 text-gray-400">Copyright © Uplus Direct Special Sales. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
-    <div id="detail-page" class="spa-page no-scrollbar">
-        <header class="bg-white border-b border-gray-100 sticky top-0 z-40 flex items-center px-4 py-3">
-            <button onclick="closeDetail()" class="p-2 -ml-2 text-gray-600 hover:bg-gray-50 rounded-full">
+    <a href="http://pf.kakao.com/_iVyhX" target="_blank" id="kakao-fab" class="fixed bottom-6 right-5 z-[45] bg-[#FEE500] text-[#3c1e1e] w-14 h-14 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:bg-[#FDD835] transition-transform hover:scale-110 flex items-center justify-center group">
+        <i data-lucide="message-circle" class="w-7 h-7 fill-current"></i>
+    </a>
+
+    <div id="detail-page" class="spa-page">
+        <header class="bg-white border-b border-gray-100 shrink-0 flex items-center px-4 py-3 z-40 relative">
+            <button onclick="closeDetail()" class="p-2 -ml-2 text-gray-600 hover:bg-gray-50 rounded-full transition-colors">
                 <i data-lucide="arrow-left" class="w-6 h-6"></i>
             </button>
             <h2 id="detail-title" class="text-[17px] font-bold ml-2">상세 조건 선택</h2>
         </header>
 
-        <div class="max-w-3xl mx-auto px-5 pt-6 pb-40">
-            <div class="bg-gray-50 rounded-2xl h-64 flex items-center justify-center mb-8 relative p-6">
-                <div id="detail-image-container" class="w-full h-full flex items-center justify-center"></div>
-                <div id="detail-badge" class="absolute top-4 left-4"></div>
-            </div>
+        <div class="flex-1 overflow-y-auto no-scrollbar relative bg-white">
+            <div class="max-w-3xl mx-auto px-5 pt-6 pb-12">
+                <div class="bg-gray-50 rounded-[24px] h-64 flex items-center justify-center mb-8 relative p-6">
+                    <div id="detail-image-container" class="w-full h-full flex items-center justify-center"></div>
+                    <div id="detail-badge" class="absolute top-4 left-4"></div>
+                </div>
 
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-[16px] font-bold mb-3">모델 선택</h3>
-                    <div id="chip-models" class="flex flex-wrap gap-2"></div>
-                </div>
-                <div>
-                    <h3 class="text-[16px] font-bold mb-3">용량 선택</h3>
-                    <div id="chip-capacities" class="flex flex-wrap gap-2"></div>
-                </div>
-                <div>
-                    <h3 class="text-[16px] font-bold mb-3">가입 유형</h3>
-                    <div id="chip-joinTypes" class="flex flex-wrap gap-2"></div>
-                </div>
-                <div>
-                    <h3 class="text-[16px] font-bold mb-3">할부 기간</h3>
-                    <div id="chip-months" class="flex flex-wrap gap-2">
-                        <button onclick="selectMonth(12)" id="btn-m12" class="month-btn px-4 py-2.5 rounded-xl border border-gray-200 text-[14px] font-bold bg-white text-gray-500 hover:bg-gray-50 transition-all">12개월</button>
-                        <button onclick="selectMonth(24)" id="btn-m24" class="month-btn px-4 py-2.5 rounded-xl border border-gray-200 text-[14px] font-bold bg-white text-gray-500 hover:bg-gray-50 transition-all">24개월</button>
-                        <button onclick="selectMonth(36)" id="btn-m36" class="month-btn px-4 py-2.5 rounded-xl border border-gray-200 text-[14px] font-bold bg-white text-gray-500 hover:bg-gray-50 transition-all">36개월</button>
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-[15px] font-bold mb-3 text-gray-900">모델 선택</h3>
+                        <div id="chip-models" class="flex flex-wrap gap-2"></div>
                     </div>
-                </div>
-            </div>
-
-            <div class="bg-gray-50 border border-gray-100 rounded-[20px] p-5 mt-10">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="font-bold text-[15px]">월 예상 납부액</span>
-                    <span id="detail-약정유형" class="text-[12px] bg-white border border-gray-200 px-2 py-1 rounded text-gray-600 font-bold"></span>
-                </div>
-                
-                <div class="space-y-3 pt-3 border-t border-gray-200/60 text-[14px]">
-                    <div class="flex justify-between text-gray-600">
-                        <span>출고가</span>
-                        <span id="calc-출고가" class="font-medium"></span>
+                    <div>
+                        <h3 class="text-[15px] font-bold mb-3 text-gray-900">용량 선택</h3>
+                        <div id="chip-capacities" class="flex flex-wrap gap-2"></div>
                     </div>
-                    <div class="flex justify-between text-blue-500 font-medium hidden" id="row-공시지원금">
-                        <span>공시지원금</span>
-                        <span id="calc-공시지원금"></span>
+                    <div>
+                        <h3 class="text-[15px] font-bold mb-3 text-gray-900">가입 유형</h3>
+                        <div id="chip-joinTypes" class="flex flex-wrap gap-2"></div>
                     </div>
-                    <div class="flex justify-between text-uplus-magenta font-medium hidden" id="row-특별지원금">
-                        <span>특판 다이렉트 지원</span>
-                        <span id="calc-특별지원금"></span>
-                    </div>
-                    <div class="flex justify-between font-bold text-gray-900 pt-2">
-                        <span>실구매가 (할부원금)</span>
-                        <span id="calc-할부원금" class="text-rose-500"></span>
+                    <div>
+                        <h3 class="text-[15px] font-bold mb-3 text-gray-900">할부 기간</h3>
+                        <div id="chip-months" class="flex flex-wrap gap-2">
+                            <button onclick="selectMonth(12)" id="btn-m12" class="month-btn px-4 py-2.5 rounded-[12px] border border-gray-200 text-[14px] font-bold bg-white text-gray-500 hover:bg-gray-50 transition-all">12개월</button>
+                            <button onclick="selectMonth(24)" id="btn-m24" class="month-btn px-4 py-2.5 rounded-[12px] border border-gray-200 text-[14px] font-bold bg-white text-gray-500 hover:bg-gray-50 transition-all">24개월</button>
+                            <button onclick="selectMonth(36)" id="btn-m36" class="month-btn px-4 py-2.5 rounded-[12px] border border-gray-200 text-[14px] font-bold bg-white text-gray-500 hover:bg-gray-50 transition-all">36개월</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="space-y-3 pt-5 mt-5 border-t border-gray-200/60 text-[14px]">
-                    <div class="flex justify-between text-gray-600">
-                        <span>월 단말기 할부금 <span class="text-[12px] text-gray-400 font-normal">(이자 5.9% 포함)</span></span>
-                        <span id="calc-월할부" class="font-medium"></span>
+                <div class="bg-gray-50 border border-gray-100 rounded-[24px] p-6 mt-10">
+                    <div class="flex justify-between items-center mb-5">
+                        <span class="font-bold text-[16px]">월 예상 납부액</span>
+                        <span id="detail-약정유형" class="text-[12px] bg-white border border-gray-200 px-2.5 py-1 rounded-md text-gray-600 font-bold"></span>
                     </div>
-                    <div class="flex justify-between text-gray-600">
-                        <span>월 통신 요금 <span id="calc-요금제이름" class="text-[12px] text-gray-400 font-normal"></span></span>
-                        <span id="calc-월요금" class="font-medium"></span>
+                    
+                    <div class="space-y-3 pt-4 border-t border-gray-200/60 text-[14px]">
+                        <div class="flex justify-between text-gray-500">
+                            <span>출고가</span>
+                            <span id="calc-출고가" class="font-medium line-through"></span>
+                        </div>
+                        <div class="flex justify-between text-blue-500 font-medium hidden" id="row-공시지원금">
+                            <span>공시지원금</span>
+                            <span id="calc-공시지원금"></span>
+                        </div>
+                        <div class="flex justify-between text-uplus-magenta font-medium hidden" id="row-특별지원금">
+                            <span>특판 다이렉트 지원</span>
+                            <span id="calc-특별지원금"></span>
+                        </div>
+                        <div class="flex justify-between font-bold text-gray-900 pt-2">
+                            <span>실구매가 (할부원금)</span>
+                            <span id="calc-할부원금" class="text-rose-500"></span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 pt-5 mt-5 border-t border-gray-200/60 text-[14px]">
+                        <div class="flex justify-between text-gray-600">
+                            <span>월 기기 할부금 <span class="text-[12px] text-gray-400 font-normal">(이자 5.9% 포함)</span></span>
+                            <span id="calc-월할부" class="font-medium text-gray-900"></span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>월 통신 요금 <span id="calc-요금제이름" class="text-[12px] text-gray-400 font-normal"></span></span>
+                            <span id="calc-월요금" class="font-medium text-gray-900"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mt-8 pt-8 border-t border-gray-100">
-                <h3 class="text-[16px] font-bold mb-4 flex items-center gap-2">
-                    <i data-lucide="info" class="w-5 h-5 text-gray-400"></i> 꼭 알아두세요
-                </h3>
-                <ul class="space-y-3 text-[13px] text-gray-500 leading-relaxed bg-gray-50 p-5 rounded-[16px]">
-                    <li class="flex gap-2"><span class="text-gray-400">•</span> 요금제 유지 기간 : 개통 후 D+185일 (또는 M+6개월) 필수 유지</li>
-                    <li class="flex gap-2"><span class="text-gray-400">•</span> 부가서비스 : 의무 가입 부가서비스 없음</li>
-                    <li class="flex gap-2"><span class="text-gray-400">•</span> 배송 및 개통 : 우체국 택배 무료 배송, 기기 수령 후 비대면 개통</li>
-                    <li class="flex gap-2"><span class="text-gray-400">•</span> 교환/환불 : 단말기 개봉 및 통화 이력 발생 후 단순 변심에 의한 교환/환불 불가</li>
-                </ul>
+                <div class="mt-8 pt-8 border-t border-gray-100">
+                    <h3 class="text-[15px] font-bold mb-4 flex items-center gap-2">
+                        <i data-lucide="info" class="w-5 h-5 text-gray-400"></i> 꼭 알아두세요
+                    </h3>
+                    <ul class="space-y-3 text-[13px] text-gray-500 leading-relaxed bg-gray-50 p-5 rounded-[20px]">
+                        <li class="flex gap-2"><span class="text-gray-400">•</span> 요금제 유지 기간 : 개통 후 D+185일 (또는 M+6개월) 필수 유지</li>
+                        <li class="flex gap-2"><span class="text-gray-400">•</span> 부가서비스 : 의무 가입 부가서비스 없음</li>
+                        <li class="flex gap-2"><span class="text-gray-400">•</span> 배송 및 개통 : 우체국 택배 무료 배송, 기기 수령 후 비대면 개통</li>
+                        <li class="flex gap-2"><span class="text-gray-400">•</span> 교환/환불 : 단말기 개봉 및 통화 이력 발생 후 단순 변심에 의한 교환/환불 불가</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 p-4 pb-6 sm:pb-4 flex justify-between items-center z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+        <div class="bg-white border-t border-gray-100 p-4 pb-6 sm:pb-4 flex justify-between items-center shrink-0 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-50 w-full">
             <div class="pl-2">
                 <div class="text-[12px] text-gray-500 font-bold mb-0.5">총 월 납부액</div>
-                <div class="text-[22px] font-black text-gray-900 leading-none"><span id="calc-총월요금">0</span><span class="text-[16px] font-bold ml-0.5">원</span></div>
+                <div class="text-[24px] font-black text-gray-900 leading-none tracking-tight"><span id="calc-총월요금">0</span><span class="text-[16px] font-bold ml-0.5">원</span></div>
             </div>
-            <button onclick="openFormModal()" class="bg-gray-900 hover:bg-black text-white font-bold py-3.5 px-8 rounded-[14px] text-[15px] transition shadow-md">
+            <button onclick="openFormModal()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-8 rounded-[14px] text-[15px] transition shadow-md">
                 상담 신청하기
             </button>
         </div>
@@ -165,7 +252,7 @@
                     <label class="block text-[14px] font-bold text-gray-900 mb-1.5">연락처</label>
                     <input type="tel" id="orderPhone" required placeholder="010-0000-0000" class="w-full px-4 py-3.5 rounded-[14px] bg-gray-50 border border-transparent text-gray-900 font-medium placeholder-gray-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-gray-900 transition-all">
                 </div>
-                <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-[14px] shadow-md mt-4 transition">
+                <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-[14px] shadow-md mt-4 transition text-[16px]">
                     신청 완료하기
                 </button>
             </form>
@@ -184,22 +271,42 @@
     </div>
 
     <script>
-        // ==========================================
-        // 구글 앱스 스크립트 배포 URL (★교체 필수★)
-        // ==========================================
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzIpG_Wki2dT8LQbwp02zoStOFKIEUBggeU9ZOKXJM2uB_zQgXITLKjG8nQaD-JIKfFTg/exec';
+        // 메인 배너 3초 슬라이드 로직
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const bannerTrack = document.getElementById('main-banner-track');
+        const dots = document.querySelectorAll('.banner-dot');
+
+        function updateBanner() {
+            bannerTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                if(i === currentSlide) {
+                    dot.classList.remove('opacity-40');
+                    dot.classList.add('w-6', 'opacity-100');
+                } else {
+                    dot.classList.remove('w-6', 'opacity-100');
+                    dot.classList.add('opacity-40');
+                }
+            });
+        }
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateBanner();
+        }, 3000);
+
+        // 구글 시트 URL 설정
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4haLqiekuBHxohYDfjfhwNgybj7cS6ZPG0Ig5N9Z29nB2rrcjzfM_TNHpahNQXLjeDA/exec';
         
         let allData = [];
-        let groupedData = {}; // 모델구분(S26류) 기준으로 묶인 데이터
+        let groupedData = {}; 
         
-        // 현재 선택된 옵션 상태
         let state = {
             modelGroup: '',
             modelName: '',
             capacity: '',
-            joinType: '',
-            months: 24, // 기본 24개월
-            currentItem: null // 최종 매칭된 행 데이터
+            joinType: '통신사이동',
+            months: 24, 
+            currentItem: null 
         };
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -216,34 +323,64 @@
                     allData = data;
                     document.getElementById('loading-message').classList.add('hidden');
                     document.getElementById('group-grid').classList.remove('hidden');
-                    processData(data);
+                    applyFilters(); 
                 })
                 .catch(err => {
                     document.getElementById('loading-message').innerHTML = "<span class='text-red-500'>데이터를 불러올 수 없습니다.</span>";
                 });
         }
 
-        function processData(data) {
+        let currentBrand = 'all';
+        function setJoinType(type) {
+            state.joinType = type;
+            document.querySelectorAll('#tab-통신사이동, #tab-기기변경').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
+                btn.classList.add('text-gray-500');
+            });
+            const activeTab = document.getElementById(`tab-${type}`);
+            activeTab.classList.remove('text-gray-500');
+            activeTab.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
+            applyFilters();
+        }
+
+        function filterBrand(brand) {
+            currentBrand = brand;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-gray-900', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-500');
+            });
+            const activeBtn = document.getElementById(`btn-${brand}`);
+            activeBtn.classList.remove('bg-white', 'text-gray-500');
+            activeBtn.classList.add('active', 'bg-gray-900', 'text-white');
+            applyFilters();
+        }
+
+        function applyFilters() {
+            let filtered = allData.filter(item => item.joinType === state.joinType);
+            if (currentBrand === '삼성') filtered = filtered.filter(item => item.brand === '삼성');
+            else if (currentBrand === '애플') filtered = filtered.filter(item => item.brand === '애플');
+            
             groupedData = {};
-            data.forEach(item => {
+            filtered.forEach(item => {
                 if (!groupedData[item.modelGroup]) groupedData[item.modelGroup] = [];
                 groupedData[item.modelGroup].push(item);
             });
             renderMainList();
         }
 
-        // 1. 메인 리스트 렌더링
         function renderMainList() {
             const grid = document.getElementById('group-grid');
             let html = '';
 
+            if(Object.keys(groupedData).length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-16 text-gray-400 font-medium">해당하는 조건의 기기가 없습니다.</div>`;
+                return;
+            }
+
             for (const [groupName, items] of Object.entries(groupedData)) {
-                // 대표 뱃지 및 브랜드 추출
-                const brand = items[0].brand;
                 const badges = items.map(i => i.badge).filter(b => b);
                 const representBadge = badges.length > 0 ? badges[0] : '';
                 
-                // 해당 그룹 중 가장 저렴한 실구매가 찾기
                 let minPrice = Infinity;
                 items.forEach(i => {
                     let p = i.contractType === '선택약정' ? i.price - i.specialSubsidy : i.price - i.publicSubsidy - i.specialSubsidy;
@@ -251,61 +388,63 @@
                 });
                 if (minPrice === Infinity || minPrice < 0) minPrice = 0;
 
-                // 대표 이미지 찾기
                 const repImg = items.find(i => i.imgUrl)?.imgUrl;
                 const imageHtml = repImg 
                     ? `<img src="${repImg}" class="h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500">`
-                    : `<div class="w-full h-full flex items-center justify-center bg-gray-100 rounded-[16px]"><i data-lucide="smartphone" class="w-10 h-10 text-gray-300"></i></div>`;
+                    : `<div class="w-full h-full flex items-center justify-center bg-gray-100 rounded-[16px]"><i data-lucide="smartphone" class="w-8 h-8 text-gray-300"></i></div>`;
 
                 html += `
-                <div onclick="openDetail('${groupName}')" class="bg-white rounded-[24px] p-5 flex items-center gap-4 cursor-pointer shadow-sm border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all group">
-                    <div class="w-20 h-20 shrink-0 bg-gray-50 rounded-[16px] p-2 relative">
+                <div onclick="openDetail('${groupName}')" class="bg-white rounded-[24px] p-5 flex items-center gap-4 cursor-pointer shadow-[0_2px_10px_rgb(0,0,0,0.02)] border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all group">
+                    <div class="w-[84px] h-[84px] shrink-0 bg-gray-50/50 rounded-[16px] p-2 relative">
                         ${imageHtml}
                     </div>
                     <div class="flex-1">
-                        ${representBadge ? `<span class="text-[10px] font-bold bg-rose-100 text-rose-600 px-2 py-0.5 rounded uppercase mb-1 inline-block">${representBadge}</span>` : ''}
-                        <h3 class="text-[18px] font-black text-gray-900 leading-tight mb-1">${groupName}</h3>
-                        <p class="text-[13px] text-gray-500 font-medium">할부원금 ${formatNum(minPrice)}원 부터</p>
+                        ${representBadge ? `<span class="text-[10px] font-bold bg-rose-50 text-rose-500 border border-rose-100 px-2 py-0.5 rounded flex items-center w-max gap-1 mb-1.5"><i data-lucide="zap" class="w-3 h-3 fill-rose-500"></i>${representBadge}</span>` : ''}
+                        <h3 class="text-[18px] font-bold text-gray-900 leading-tight mb-1.5 tracking-tight">${groupName}</h3>
+                        <p class="text-[13px] text-gray-500 font-medium bg-gray-50 inline-block px-2 py-1 rounded-md">할부원금 ${formatNum(minPrice)}원~</p>
                     </div>
-                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-300"></i>
+                    <div class="bg-gray-50 p-2 rounded-full group-hover:bg-gray-900 group-hover:text-white transition-colors">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                    </div>
                 </div>`;
             }
             grid.innerHTML = html;
             if (window.lucide) lucide.createIcons();
         }
 
-        // 2. 상세 페이지 열기 및 초기 옵션 세팅
         function openDetail(groupName) {
             state.modelGroup = groupName;
             
-            // 1) 가능한 모델명 추출
-            const groupItems = groupedData[groupName];
+            const groupItems = allData.filter(i => i.modelGroup === groupName);
             const uniqueModels = [...new Set(groupItems.map(i => i.modelName))];
-            state.modelName = uniqueModels[0]; // 첫번째 모델 자동 선택
+            state.modelName = uniqueModels[0]; 
 
-            updateOptionLists(); // 모델명에 따른 용량/가입유형 세팅 및 UI 갱신
+            updateOptionLists();
 
             document.getElementById('detail-title').innerText = groupName;
             document.getElementById('detail-page').classList.add('active');
-            document.body.style.overflow = 'hidden'; // 부모 스크롤 방지
+            document.body.style.overflow = 'hidden'; 
+            
+            // 상세 페이지 진입 시 카카오 플로팅 버튼 숨김 처리
+            document.getElementById('kakao-fab').classList.add('hidden');
         }
 
         function closeDetail() {
             document.getElementById('detail-page').classList.remove('active');
             document.body.style.overflow = 'auto';
+            
+            // 상세 페이지 닫으면 카카오 플로팅 버튼 다시 노출
+            document.getElementById('kakao-fab').classList.remove('hidden');
         }
 
-        // 3. 옵션 칩 리스트 업데이트
         function updateOptionLists() {
-            const items = groupedData[state.modelGroup];
+            const items = allData.filter(i => i.modelGroup === state.modelGroup);
             
-            // 현재 선택된 모델명 기준으로 칩 생성
             const uniqueModels = [...new Set(items.map(i => i.modelName))];
             renderChips('chip-models', uniqueModels, state.modelName, (val) => {
                 state.modelName = val; updateOptionLists();
             });
 
-            // 선택된 모델명에 존재하는 용량 추출
             const modelItems = items.filter(i => i.modelName === state.modelName);
             const uniqueCapacities = [...new Set(modelItems.map(i => i.capacity))];
             if (!uniqueCapacities.includes(state.capacity)) state.capacity = uniqueCapacities[0];
@@ -313,7 +452,6 @@
                 state.capacity = val; updateOptionLists();
             });
 
-            // 선택된 모델명+용량에 존재하는 가입유형 추출
             const capItems = modelItems.filter(i => i.capacity === state.capacity);
             const uniqueJoinTypes = [...new Set(capItems.map(i => i.joinType))];
             if (!uniqueJoinTypes.includes(state.joinType)) state.joinType = uniqueJoinTypes[0];
@@ -321,9 +459,8 @@
                 state.joinType = val; updateOptionLists();
             });
 
-            // 최종 아이템 찾기 및 화면 갱신
             state.currentItem = capItems.find(i => i.joinType === state.joinType) || null;
-            selectMonth(state.months); // 개월 수 버튼 UI 갱신 및 계산 실행
+            selectMonth(state.months); 
         }
 
         function renderChips(containerId, list, selectedValue, callback) {
@@ -338,7 +475,6 @@
             });
         }
 
-        // 할부 기간 선택
         function selectMonth(m) {
             state.months = m;
             document.querySelectorAll('.month-btn').forEach(btn => {
@@ -353,12 +489,10 @@
             calculatePrice();
         }
 
-        // 4. 가격 및 이자 계산 (핵심 로직)
         function calculatePrice() {
             if (!state.currentItem) return;
             const item = state.currentItem;
 
-            // 뱃지 및 이미지 처리
             const imgContainer = document.getElementById('detail-image-container');
             imgContainer.innerHTML = item.imgUrl 
                 ? `<img src="${item.imgUrl}" class="h-full object-contain mix-blend-multiply drop-shadow-xl">` 
@@ -368,12 +502,11 @@
             document.getElementById('detail-badge').innerHTML = item.badge 
                 ? `<span class="bg-gray-900 text-white text-[11px] font-bold px-3 py-1.5 rounded-full shadow-lg">${item.badge}</span>` : '';
 
-            // 금액 변수 세팅
             const price = item.price;
             const publicSub = item.publicSubsidy;
             const specialSub = item.specialSubsidy;
             const planPrice = item.plan;
-            const selectDiscMonth = Math.floor(item.selectDiscount / 24); // 24개월 선약할인 총액을 24로 나눔
+            const selectDiscMonth = Math.floor(item.selectDiscount / 24); 
 
             let principal = 0;
             let realMonthlyPlan = 0;
@@ -382,18 +515,15 @@
             document.getElementById('calc-출고가').innerText = formatNum(price) + "원";
             document.getElementById('calc-요금제이름').innerText = `(${formatNum(planPrice)}원 기준)`;
 
-            // 공시지원금 / 선택약정 로직 분기
             if (item.contractType === '선택약정') {
                 document.getElementById('row-공시지원금').classList.add('hidden');
                 document.getElementById('row-특별지원금').classList.remove('hidden');
-                
                 document.getElementById('calc-특별지원금').innerText = "-" + formatNum(specialSub) + "원";
                 principal = price - specialSub;
                 realMonthlyPlan = planPrice - selectDiscMonth;
             } else {
                 document.getElementById('row-공시지원금').classList.remove('hidden');
                 document.getElementById('row-특별지원금').classList.remove('hidden');
-                
                 document.getElementById('calc-공시지원금').innerText = "-" + formatNum(publicSub) + "원";
                 document.getElementById('calc-특별지원금').innerText = "-" + formatNum(specialSub) + "원";
                 principal = price - publicSub - specialSub;
@@ -403,11 +533,10 @@
             if (principal < 0) principal = 0;
             document.getElementById('calc-할부원금').innerText = formatNum(principal) + "원";
 
-            // 단말기 월 할부금 계산 (연이율 5.9% 원리금균등상환 방식)
             let monthlyDevice = 0;
             if (principal > 0 && state.months > 0) {
-                const r = 0.059 / 12; // 월 이자율
-                const n = state.months; // 개월 수
+                const r = 0.059 / 12; 
+                const n = state.months; 
                 monthlyDevice = Math.floor((principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
             }
 
@@ -418,17 +547,9 @@
             document.getElementById('calc-총월요금').innerText = formatNum(total);
         }
 
-        // ================= 모달 및 폼 전송 로직 =================
-        function openFormModal() {
-            document.getElementById('formModal').classList.remove('hidden');
-        }
-        function closeFormModal() {
-            document.getElementById('formModal').classList.add('hidden');
-            document.getElementById('orderForm').reset();
-        }
-        function closeThankYouModal() {
-            document.getElementById('thankYouModal').classList.add('hidden');
-        }
+        function openFormModal() { document.getElementById('formModal').classList.remove('hidden'); }
+        function closeFormModal() { document.getElementById('formModal').classList.add('hidden'); document.getElementById('orderForm').reset(); }
+        function closeThankYouModal() { document.getElementById('thankYouModal').classList.add('hidden'); }
 
         function handleOrderSubmit(e) {
             e.preventDefault();
@@ -440,9 +561,7 @@
             btn.innerText = "접수 처리 중...";
             btn.disabled = true;
 
-            // 시트에 기록할 요약 정보 (예: [S26U / 512G / 기기변경 / 24개월할부] 선택약정)
             const finalModelInfo = `[${state.modelName} / ${state.capacity} / ${state.joinType} / ${state.months}개월] ${state.currentItem.contractType}`;
-
             const formData = new URLSearchParams();
             formData.append('name', name);
             formData.append('phone', phone);
